@@ -9,7 +9,7 @@ const output = document.getElementById("output");
 const API = 'https://dummyjson.com/products'; // API pública de testes
 
 let currentPage = 0;
-const limit = 10;
+const limit = 18;
 
 function showSpinner(show) {
     $spinner.style.display = show ? 'inline-block' : 'none';
@@ -24,15 +24,30 @@ function renderProdutos(posts) {
     // innerHTML para modificar o elemento
     // .map transforma o JSON em HTML
     $list.innerHTML = posts.products.map(p => `
-    <div class="card d-flex flex-row align-items-center">
-      <img src="${p.thumbnail}" alt="${p.title}" class="card-img">
-      <div class="card-body">
-        <strong>#${p.id} — ${p.title}</strong>
-        <p><i class="bi bi-tags"></i> ${p.category}</p>
-        <p><i class="bi bi-currency-dollar"></i> R$ ${p.price}</p>
-        <p><i class="bi bi-star-fill text-warning"></i> ${p.rating}</p>
-        <p><i class="bi bi-box-seam"></i> ${p.stock} em estoque</p>
-      </div>
+        <div class="card">
+          <div class="card__shine"></div>
+          <div class="card__glow"></div>
+          <div class="card__content">
+            <div class="card__badge"><strong>#${p.id}</strong></div>
+            <div style="--bg-color: #a78bfa" class="card__image"><img src="${p.thumbnail}" alt="${p.title}" class="card-img"></div>
+            <div class="card__text">
+              <p class="card__title">${p.title}</p>
+              <p class="card__description">${p.category}</p>
+            </div>
+            <div class="card__footer">
+              <div class="card__price">R$ ${p.price}</div>
+              <div class="card__button">
+                <svg height="16" width="16" viewBox="0 0 24 24">
+                  <path
+                    stroke-width="2"
+                    stroke="currentColor"
+                    d="M4 12H20M12 4V20"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
     </div>
   `).join('');
 }
